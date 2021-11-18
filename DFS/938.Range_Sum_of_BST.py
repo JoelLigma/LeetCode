@@ -22,16 +22,12 @@ class Solution(object):
             
             if not root:
                 return lst
-            else:
-                if (root.val >= low) & (root.val <=high):
-                    lst += [root.val]
-            if root.left:
-                dfs(root.left, lst)
-            if root.right:
-                dfs(root.right, lst)
+            if (root.val >= low) & (root.val <=high):
+                lst += [root.val]
+                
+            dfs(root.left, lst)
+            dfs(root.right, lst)
                 
             return lst
-        
-        intermediate_result = dfs(root, lst)
-                        
-        return sum(intermediate_result)
+                                
+        return sum(dfs(root, lst))
