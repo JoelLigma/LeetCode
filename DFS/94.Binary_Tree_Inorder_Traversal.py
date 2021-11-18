@@ -8,28 +8,25 @@
 #         self.right = right
 
 # in-order dfs left, root, right
-
+  
 class Solution:
-       
-    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:    
+    def inorderTraversal(self, root): 
+        """
+        :type root: TreeNode
+        :rtype: List[int]
+        """
         
         output = []
         
         def dfs(root, output):
-            # base case
             if not root:
                 return output
-            
             # traversing the tree starting with left
-            if root.left:
-                dfs(root.left, output)
-                
+            dfs(root.left, output)
             # then add root node to output
             output += [root.val]
-   
             # finally, traverse the right side
-            if root.right:
-                dfs(root.right, output)
+            dfs(root.right, output)
 
             return output
                 
