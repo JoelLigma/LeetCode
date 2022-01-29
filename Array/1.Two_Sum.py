@@ -23,7 +23,7 @@ class Solution:
                     if elem + elem2 == target:
                         return [idx,idx2]
                     
-# Time/space complexity analysis: O(n**2) - beats 99.43% of Python submissions (runtime) & 99.99% of submissions (memory usage)
+# Time/space complexity analysis: O(n**2) - beats 5.00% of Python submissions (runtime) & 66.64% of submissions (memory usage)
 
 
 # Solution 2:
@@ -31,14 +31,12 @@ class Solution:
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         d = dict()
-
         for idx, value in enumerate(nums):
-            difference = target - nums[idx]
-            if difference in d:
+            if target - value in d:
                 # as there is only one solution, we return it
-                return [d[difference], idx] 
+                return [d[target - value], idx] 
             d[value] = idx
-        
+             
 """
 Explanation:
 
@@ -49,7 +47,7 @@ found the solution and can return the current index and the index of the value t
 looking up the dictionary value (index) using the difference value as key.
 if not, we continue to add the key, value pair (current value, index) to the dictionary and continue searching.
 
-Time/space complexity analysis: O(n) - 127ms, beats 40.15% of Python submissions (runtime) & 61.63% of submissions (memory usage)
+Time/space complexity analysis: O(n) - 127ms, beats 63.82% of Python submissions (runtime) & 55.58% of submissions (memory usage)
 
 
 - adding value to dictionary O(1) 
