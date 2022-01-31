@@ -41,7 +41,7 @@ Explanation:
   the left pointer to get a larger integer and reach the result.
 - In short: increase in left pointer == increase the sum, decrease in right pointer == decrease the sum
 
-Time complexity in the worst case: O(n), no extra space
+Time complexity in the worst case: O(n)
 """
 
 class Solution(object):
@@ -51,12 +51,11 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        left_idx, right_idx = 0, len(numbers)-1
-        while left_idx < right_idx:  
-            temp_sum = numbers[left_idx] + numbers[right_idx]
-            if temp_sum == target:
-                return [left_idx+1, right_idx+1]
-            elif temp_sum < target:
-                left_idx += 1
+        l, r = 0, len(numbers)-1
+        while l < r:  
+            if numbers[l] + numbers[r] == target:
+                return [l+1, r+1]
+            elif numbers[l] + numbers[r] < target:
+                l += 1
             else:
-                right_idx -= 1
+                r -= 1
