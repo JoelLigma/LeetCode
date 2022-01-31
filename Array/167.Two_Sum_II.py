@@ -35,11 +35,11 @@ Two-pointer solution
 
 Explanation:
 
-- there is only one solution
-- Long explanation: array is sorted, thus if the current pair of integers > target, we know that we must reduce the right pointer to get a
-  smaller number to ultimately get closer to the result. Likewise, if the current pair of intergers < target, we know that we must increase 
-  the left pointer to get a larger integer and reach the result.
-- In short: increase in left pointer == increase the sum, decrease in right pointer == decrease the sum
+- Long explanation: array is sorted, there is only solution and we use 2 pointers; one at the beginning, the other one at the end and search the array.
+  If the current pair of integers > target, we know that we must reduce the right pointer to get a smaller number to ultimately get closer to the result.
+  Likewise, if the current pair of intergers < target, we know that we must increase the left pointer to get a larger integer and reach the result.
+- In short: increase in left pointer == increase the sum, decrease in right pointer == decrease the sum, when we find the pair that matches the target we 
+  return the result.
 
 Time complexity in the worst case: O(n)
 """
