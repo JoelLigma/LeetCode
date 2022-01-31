@@ -29,4 +29,34 @@ class Solution(object):
 # Space/time complexity analysis: Space: O(n) & Time: O(n) 
 # adding 1 to the indices is O(1) but dictionary may scale with input array size
 
-# Solution 2:
+# Solution 2: Two-pointer
+"""
+Two-pointer solution
+
+Explanation:
+
+- there is only one solution
+- Long explanation: array is sorted, thus if the current pair of integers > target, we know that we must reduce the right pointer to get a
+  smaller number to ultimately get closer to the result. Likewise, if the current pair of intergers < target, we know that we must increase 
+  the left pointer to get a larger integer and reach the result.
+- In short: increase in left pointer == increase the sum, decrease in right pointer == decrease the sum
+
+Time complexity in the worst case: O(n), no extra space
+"""
+
+class Solution(object):
+    def twoSum(self, numbers, target):
+        """
+        :type numbers: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        left_idx, right_idx = 0, len(numbers)-1
+        while left_idx < right_idx:  
+            temp_sum = numbers[left_idx] + numbers[right_idx]
+            if temp_sum == target:
+                return [left_idx+1, right_idx+1]
+            elif temp_sum < target:
+                left_idx += 1
+            else:
+                right_idx -= 1
