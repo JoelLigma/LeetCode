@@ -68,3 +68,42 @@ class Solution(object):
       
 # Time complexity: O(n**2)  
 # Space complexity: O(n) as we keep track of triplets using a dictionary which may scale with the number of triplets
+
+
+# Alternative Solution without dictionary
+class Solution(object):
+    def threeSum(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        
+        """
+        output = []
+        n = len(nums)
+        
+        # sort the array O(nlogn)
+        nums = sorted(nums)
+                
+        # fix one integer; ignore the last two
+        for i in range(n - 2):
+            
+            # to handle duplicates for i, if duplicate found -> skip
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
+                
+            # initialize the second and last index for each iteration
+            l = i + 1
+            r = n - 1
+            
+            while l < r:      
+                if nums[i] + nums[l] + nums[r] == 0:
+                    output += [[nums[i], nums[l], nums[r]]]
+                    l += 1
+                    # handling duplicates for l, if duplicate found -> skip by incrementing the left pointer
+                    while l < r and nums[l] == nums[l-1]:
+                        l += 1    
+                elif nums[i] + nums[l] + nums[r] < 0:
+                    l += 1
+                else:
+                    r -= 1
+        return output
