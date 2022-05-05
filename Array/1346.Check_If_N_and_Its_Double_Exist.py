@@ -33,7 +33,7 @@ class Solution(object):
       
       
     # Solution 2: Using enumerate (slightly faster)
-    def checkIfExist(self, arr):
+    def checkIfExist2(self, arr):
         """
         :type arr: List[int]
         :rtype: bool
@@ -44,3 +44,7 @@ class Solution(object):
                     return True
         return False
     # time/space complexity: O(n**2)/O(1)     
+    
+    
+    # Solution 3: binary search
+    # TO DO
