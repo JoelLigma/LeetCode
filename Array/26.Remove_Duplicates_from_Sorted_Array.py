@@ -26,8 +26,8 @@ class Solution(object):
         c = 0
         for i in range(1, len(nums)):
             if nums[i] > nums[c]:
-                nums[c+1] = nums[i]
                 c += 1
+                nums[c] = nums[i]
         return c+1
  
 # Time/space complexity: O(n)/O(1)
