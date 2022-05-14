@@ -18,7 +18,7 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        k = k % len(nums)
+        k = k % len(nums) # <- this is the key to this solution as this allows us to keep track of the rotation if k exceeds the number of elements in nums
         l, r = 0, len(nums)-1
         
         def reverse(l,r,nums):
