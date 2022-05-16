@@ -19,7 +19,8 @@ class Solution:
                 out.add(n)
         return list(out) 
     
-    # space/time complexity: O(n)/O(n)
+    # Time complexity: O(n+m), where n is the size of nums1 and m the size of nums2. O(n) time to convert nums1 to set & O(m) time to loop over nums2. 
+    # Space complexity: O(n+m), where n is the size of nums1 and m is the size of nums2
     
     # "lazy" solution
     def intersection2(self, nums1: List[int], nums2: List[int]) -> List[int]:
