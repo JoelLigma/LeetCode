@@ -18,9 +18,9 @@ class Solution:
             else:
                 d[letter] += 1
         
-        for key in d:
-            if d[key] == 1:
-                return s.index(key)
+        for i,v in enumerate(s):
+            if d[v] == 1:
+                return i
         return -1
       
 # time complexity: O(n), where n is the size of the input string
