@@ -11,6 +11,23 @@ Example 1:
 
 Input: nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
 Output: [1,2,2,3,5,6]
+
+
+Example 2:
+
+Input: nums1 = [1], m = 1, nums2 = [], n = 0
+Output: [1]
+Explanation: The arrays we are merging are [1] and [].
+The result of the merge is [1].
+
+
+Example 3:
+
+Input: nums1 = [0], m = 0, nums2 = [1], n = 1
+Output: [1]
+Explanation: The arrays we are merging are [] and [1].
+The result of the merge is [1].
+Note that because m = 0, there are no elements in nums1. The 0 is only there to ensure the merge result can fit in nums1.
 """
 
 # Time/space complexity analysis needs revision!
@@ -32,39 +49,30 @@ class Solution(object):
 
 
 # Solution 2 while loop:
+class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+    """
+    Do not return anything, modify nums1 in-place instead.
+    """
+    last_idx = n + m - 1        
 
-class Solution(object):
-    def merge(self, nums1, m, nums2, n):
-        """
-        :type nums1: List[int]
-        :type m: int
-        :type nums2: List[int]
-        :type n: int
-        :rtype: None Do not return anything, modify nums1 in-place instead.
-        """
-        # last index of nums1
-        last_idx = m+n-1
-        
-        # merge them in reverse order
-        while m > 0 and n > 0:
-            if nums1[m-1] > nums2[n-1]:
-                nums1[last_idx] = nums1[m-1]
-                # since we updated the empty space with an element of nums1, 
-                # we decrease the index to the next largest element to continue
-                m -= 1
-            else:
-                nums1[last_idx] = nums2[n-1]
-                # same as above but for nums2
-                n -= 1
-
-            last_idx -= 1
-            
-        # lastly, we take care of the edge case where the first element in nums1 is larger than
-        # the first element in nums2.
-        # The number of leftover elements in nums2 may be >= 1.
-        while n > 0:
+    while n > 0 and m > 0:
+        # we have to use m-1 etc because we have to account for the case where either nums1 or nums2 are empty.
+        # if we start with n -= 1, and then indexing the arrays it would skip this while loop with n >= 0 and m >= 0
+        # and result in rejection.
+        if nums2[n-1] > nums1[m-1]:
             nums1[last_idx] = nums2[n-1]
             n -= 1
-            last_idx -= 1
-            
-  # Time/Space complexity analysis: O(n), O(1)
+        else:
+            nums1[last_idx] = nums1[m-1]
+            m -= 1
+        last_idx -= 1
+
+    # handle the case where nums2 has elements left. This can happen if the values
+    # in nums1 are larger than nums2
+    while n > 0:
+        nums1[last_idx] = nums2[n-1]
+        last_idx -= 1
+        n -= 1
+
+# Time/Space complexity analysis: O(n), O(1)
