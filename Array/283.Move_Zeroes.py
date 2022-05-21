@@ -42,3 +42,16 @@ class Solution(object):
                 nums[l], nums[r] = nums[r], nums[l]
                 l += 1
     # time/space complexity: O(n)/O(1)
+    
+    #  Solution 3: Did the same problem again but this time did it slightly different
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        l, r = 0, 0        
+        while l < len(nums) and r < len(nums):
+            if nums[r] != 0:
+                nums[l], nums[r] = nums[r], nums[l]
+                l += 1
+            r += 1
+    # time/space complexity: O(n)/O(1)
