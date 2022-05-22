@@ -21,6 +21,9 @@ class Solution:
             s[l], s[r] = s[r], s[l]
             l += 1
             r -= 1
-        return s
         
     # time/space complexity: O(n), where n is the size of the string/ O(1)
+    
+    def reverseString2(self, s: List[str]) -> None:
+        # modifies s in-place in Python
+        s[:] = s[::-1]
