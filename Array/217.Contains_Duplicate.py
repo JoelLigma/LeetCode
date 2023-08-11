@@ -19,13 +19,10 @@ class Solution(object):
         :rtype: bool
         """
         d = dict()
-        for i in range(len(nums)):
-            if not nums[i] in d:
-                d[nums[i]] = 1
+        for num in nums:
+            if not num in d:
+                d[num] = 1
             else:
-                d[nums[i]] += 1
-            
-            if d[nums[i]] > 1:
                 return True
         return False
       
