@@ -90,3 +90,35 @@ class Solution:
 # In the worst-case of constantly bad chosen pivots, the problem is not divided by half at each step, it becomes just
 # one element less, that leads to O(N2) time complexity. This can happen for if we fix the pivot at e.g. the right-most element
 # Space complexity: O(N) to store the elements in the hashmap
+
+
+# Solution 2
+class Solution(object):
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        # get counts per int
+        d = dict()
+
+        for num in nums:
+            if num not in d:
+                d[num] = 1
+            else:
+                d[num] += 1
+        
+        # create a frequency array to bucket sort the counts (ascending order)
+        freq_array = [[] for i in range(len(nums) + 1)]
+
+        for num, count in d.items():
+            freq_array[count] += [num]
+
+        # iterate over the sorted frequency array in reverse to get the top k frequent ints
+        top_k = []
+        for i in range(len(freq_array) - 1, 0, -1):
+            if freq_array[i]:
+                # it is possible to have ints with same frequency so add all to top_k
+                for num in freq_array[i]:
+                    top_k += [num]
+                    if len(top_k) == k:
+                        return top_k      
+                     
+# Time complexity: O(n), where n is the size of nums
+# space complexity: O(n), where n is the size of nums
