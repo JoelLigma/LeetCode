@@ -56,23 +56,19 @@ class Solution:
         n = len(nums)
         res = []
 
-        forward_pass = [1 for i in range(len(nums) + 1)]
-        backward_pass = [1 for i in range(len(nums) + 1)]
+        forward_pass = [1 for i in range(len(nums))]
+        backward_pass = [1 for i in range(len(nums))]
         
-        temp = 1
-        for i in range(1, len(forward_pass)):
-            temp *= nums[i - 1]
-            forward_pass[i] = temp
-        
-        temp = 1
-        for i in range(len(backward_pass) - 1):
-            temp *= nums[n - i - 1]
-            backward_pass[n - i - 1] = temp
+        for i in range(1, n):
+            forward_pass[i] = nums[i - 1] * forward_pass[i - 1]
+
+        for i in range(n - 2, -1, -1):
+            backward_pass[i] = nums[i + 1] * backward_pass[i + 1]
 
         for i in range(n):
-            res += [forward_pass[i] * backward_pass[i + 1]]
+            res += [forward_pass[i] * backward_pass[i]]
 
         return res
 
 # Time complexity: O(n), where n is the size of nums
-# Space complexity: O(k), where k is the size of forward_pass
+# Space complexity: O(n), where n is the size of forward_pass
