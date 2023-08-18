@@ -37,3 +37,26 @@ class Solution:
 
 # Time complexity: O(n), where n is the size of the input str
 # Space complexity: O(n), where n is the number of alpha numeric characters in the input str
+    
+    
+    # 2 pointer solution
+    def isPalindrome3(self, s: str) -> bool:
+        l = 0
+        r = len(s) - 1
+
+        while l < r:
+            if not s[l].isalnum():
+                l += 1
+                continue
+
+            if not s[r].isalnum():
+                r -= 1
+                continue
+
+            if s[l].lower() != s[r].lower():
+                return False
+            
+            l += 1
+            r -= 1
+        
+        return True
