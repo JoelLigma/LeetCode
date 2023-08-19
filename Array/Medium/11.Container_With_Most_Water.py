@@ -51,7 +51,7 @@ class Solution:
         
         l, r = 0, len(height) - 1
         while l < r:
-            area = abs(r - l) * min(height[l], height[r])
+            area = (r - l) * min(height[l], height[r])
             if area > largest_area:
                 largest_area = area
 
